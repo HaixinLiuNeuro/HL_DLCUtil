@@ -11,6 +11,10 @@ coor_data = Data_New{i_f};
 png_fn = file_names{i_f};
 Line3 = line_3{30};
 Line1 = line_1{30};
+
+% key points:
+no data parts do not have space
+
 %}
 function HL_DLCUtil_WriteLabeledCSV(dest_fd, dest_cvs_fn, coor_data, png_fn, colnames_New, Line3, Line1)
 
@@ -45,31 +49,33 @@ for i_f = 1:length(png_fn)
 fprintf(fid, '\r\n%s,', png_fn{i_f});
     % 
     for i_part = 1:(length(part_names)-1)
-        if coor_data.(part_names{i_part}).x(i_f) == 0
-            fprintf(fid, ' ,');
+        if coor_data.(part_names{i_part}).x(i_f) == 0 % empty entry is read as 0
+            fprintf(fid, ',');
         else
-            fprintf(fid, '%.6f,', coor_data.(part_names{i_part}).x(i_f));
+            fprintf(fid, '%e,', coor_data.(part_names{i_part}).x(i_f));
         end
         
         if coor_data.(part_names{i_part}).y(i_f) == 0
-            fprintf(fid, ' ,');
+            fprintf(fid, ',');
         else
-            fprintf(fid, '%.6f,', coor_data.(part_names{i_part}).y(i_f));
+            fprintf(fid, '%e,', coor_data.(part_names{i_part}).y(i_f));
         end
     end
     % last entry
     if coor_data.(part_names{end}).x(i_f) == 0
-        fprintf(fid, ' ,');
+        fprintf(fid, '');
     else
-        fprintf(fid, '%.6f,', coor_data.(part_names{end}).x(i_f));
+        fprintf(fid, '%e,', coor_data.(part_names{end}).x(i_f));
     end
     
     if coor_data.(part_names{end}).y(i_f) == 0
-        fprintf(fid, ' ,');
+        fprintf(fid, '');
     else
-        fprintf(fid, '%.6f,', coor_data.(part_names{end}).y(i_f));
+        fprintf(fid, '%e', coor_data.(part_names{end}).y(i_f));
     end
 end
+fprintf(fid, '\n');
+
 fclose( fid );
 %% 
 %{

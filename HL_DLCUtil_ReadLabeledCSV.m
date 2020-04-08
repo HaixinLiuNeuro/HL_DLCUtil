@@ -17,7 +17,7 @@ line_1 = strsplit(fgetl(fh),',');  % skip the first line
 colnames = strsplit(fgetl(fh),','); %extract column names
 line_3 = strsplit(fgetl(fh),','); %line 3
 
-k = 1;
+k = 1; %temp = fgetl(fh)
 temp = strsplit(fgetl(fh),','); %next line
 file_names{k} = temp{1};    
 k = k+1;

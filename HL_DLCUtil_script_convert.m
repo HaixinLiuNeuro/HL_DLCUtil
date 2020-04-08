@@ -81,11 +81,11 @@ for i_f = 1:length(Data)
         Data_New{i_f}, file_names{i_f}, colnames_New, line_3{30}, line_1{30});
 
     % copy the png files to new folder as well
-    [status,message,messageId] = copyfile(...
-        fullfile(labeled_data_fd, fds(i_f).name,'*.png'),...
-        fullfile(new_labeled_data_fd, fds(i_f).name), 'f');
+%     [status,message,messageId] = copyfile(...
+%         fullfile(labeled_data_fd, fds(i_f).name,'*.png'),...
+%         fullfile(new_labeled_data_fd, fds(i_f).name), 'f');
 
-    disp(status);
+%     disp(status);
 end
 
 %%
